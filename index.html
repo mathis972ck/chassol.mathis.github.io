@@ -1,0 +1,1804 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>CHASSOL Mathis — BTS SIO SISR</title>
+  <meta name="description" content="BTS SIO SISR — CHASSOL Mathis : systèmes, réseaux, virtualisation, RAID & sauvegardes, stages, veille, certifications, TP (PDF)." />
+
+  <!-- SEO / Social -->
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#070b1a" id="themeColorMeta" />
+  <meta property="og:title" content="CHASSOL Mathis — BTS SIO SISR" />
+  <meta property="og:description" content="Systèmes, réseaux, sécurité, virtualisation, RAID & sauvegardes, stages, veille, certifications, TP (PDF)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <!-- Optionnel : ajoute une image si tu en as une -->
+  <!-- <meta property="og:image" content="assets/og-cover.jpg" /> -->
+
+  <!-- Perf: preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD (présentation) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"CHASSOL Mathis",
+    "jobTitle":"Étudiant BTS SIO (SISR)",
+    "address":{"@type":"PostalAddress","addressLocality":"Noisy-le-Sec","addressCountry":"FR"},
+    "email":"mailto:chassol.mathis@gmail.com"
+  }
+  </script>
+
+<style>
+  :root{
+    --bg:#070b1a;
+    --text:#f5f7ff;
+    --muted:#c5cbea;
+    --line:#223056;
+    --card:#0b1530;
+
+    --primary:#ff5d8f;
+    --primary-2:#00e5ff;
+
+    --ok:#22c55e;
+    --danger:#ff4d4f;
+
+    --radius:18px;
+    --radius-2:22px;
+
+    --shadow:0 14px 36px rgba(0,0,0,.55);
+    --shadow-soft:0 22px 58px rgba(0,0,0,.45);
+
+    --bluebox:#0d1b3a;
+    --accent-ring: var(--primary-2);
+
+    --ui-box:#0f1c3d;
+    --ui-box-2:#13224a;
+    --ui-box-3:#162654;
+    --ui-stroke:#1e2f60;
+
+    --focus: 0 0 0 3px color-mix(in oklab, var(--accent-ring) 55%, transparent);
+
+    --container: 1120px;
+    --sidebar-w: clamp(250px, 24vw, 300px);
+
+    --t-fast: 160ms;
+    --t-med: 260ms;
+  }
+
+  .light{
+    --bg:#f8fbff;
+    --text:#0a0f1f;
+    --muted:#4a567a;
+    --line:#d9e5ff;
+    --card:#ffffff;
+
+    --shadow:0 12px 28px rgba(10,15,31,.08);
+    --shadow-soft:0 24px 54px rgba(10,15,31,.12);
+
+    --bluebox:#16325b;
+    --accent-ring: var(--primary-2);
+
+    --ui-box:#16325b;
+    --ui-box-2:#1c3a6c;
+    --ui-box-3:#23427a;
+    --ui-stroke:#2a4d95;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;scroll-behavior:smooth}
+  body{
+    display:grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    min-height:100vh;
+    background: var(--bg);
+    color:var(--text);
+    font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+
+    background:
+      radial-gradient(1200px 900px at 50% -20%, rgba(255,255,255,.06), transparent 60%),
+      linear-gradient(120deg, var(--primary) 0%, #6aa8ff 50%, var(--primary-2) 100%),
+      var(--bg);
+
+    background-attachment: fixed;
+    background-size: 200% 200%, 200% 200%, auto;
+    animation: shiftGradient 16s ease-in-out infinite alternate;
+  }
+  @keyframes shiftGradient{
+    0%{background-position:50% 0%,0% 50%,0 0}
+    100%{background-position:50% 0%,100% 50%,0 0}
+  }
+
+  /* Subtle noise + vignette (design upgrade) */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(900px 560px at 15% 10%, rgba(255,93,143,.10), transparent 60%),
+      radial-gradient(900px 560px at 85% 12%, rgba(0,229,255,.10), transparent 60%),
+      radial-gradient(900px 560px at 50% 110%, rgba(255,255,255,.05), transparent 60%);
+    mix-blend-mode: screen;
+    opacity:.85;
+    z-index:0;
+  }
+  body::after{
+    content:"";
+    position:fixed; inset:-1px;
+    pointer-events:none;
+    background: radial-gradient(1200px 900px at 50% 20%, transparent 40%, rgba(0,0,0,.35) 100%);
+    opacity:.55;
+    z-index:0;
+  }
+
+  main, .sidebar{position:relative; z-index:1;}
+
+  /* Accessibilité: focus visible propre */
+  :focus-visible{
+    outline:none;
+    box-shadow: var(--focus);
+    border-radius: 12px;
+  }
+
+  /* Transitions douces (thème + hover) */
+  html{
+    color-scheme: dark;
+  }
+  html.light{ color-scheme: light; }
+
+  /* Réduction des animations si préférée */
+  @media (prefers-reduced-motion: reduce){
+    html,body{scroll-behavior:auto}
+    body{animation:none; background-attachment: initial;}
+    .reveal{transition:none !important; transform:none !important; opacity:1 !important;}
+    .btn:hover,.card:hover,.nav a:hover{transform:none}
+  }
+
+  /* Skip link */
+  .skip-link{
+    position:absolute; left:-999px; top:12px; z-index:9999;
+    background: var(--card); color: var(--text);
+    border:1px solid var(--line); padding:10px 12px; border-radius:12px;
+    box-shadow: var(--shadow);
+  }
+  .skip-link:focus{left:12px}
+
+  /* Scroll progress bar */
+  .progress{
+    position:fixed; left:0; top:0; height:3px; width:100%;
+    background: color-mix(in oklab, var(--line) 40%, transparent);
+    z-index:1000;
+  }
+  .progress > i{
+    display:block; height:100%; width:0%;
+    background: linear-gradient(90deg, var(--primary), var(--primary-2));
+    box-shadow: 0 0 14px rgba(0,229,255,.25);
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    position:sticky; top:0; height:100dvh;
+    padding:26px 18px;
+    border-right:1px solid color-mix(in oklab, var(--line) 85%, transparent);
+
+    /* glassy */
+    background: color-mix(in oklab, var(--bg) 68%, transparent);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+
+    display:flex; flex-direction:column; gap:16px;
+    z-index:5;
+  }
+
+  .brand{display:flex; flex-direction:column; gap:6px; text-decoration:none}
+  .brand .name{
+    font-weight:900; font-size:22px; letter-spacing:.2px;
+    background:linear-gradient(100deg,var(--primary),var(--primary-2) 60%, #22c55e);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 2px 10px rgba(255,93,143,.12))
+  }
+  .brand small{font-size:12px; color:var(--muted); opacity:.9; font-weight:800; letter-spacing:.08em; text-transform:uppercase}
+
+  .nav{display:flex; flex-direction:column; gap:10px; margin-top:6px}
+  .nav a{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 14px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#fff;
+
+    background: linear-gradient(180deg, color-mix(in oklab, var(--bluebox) 92%, transparent), var(--bluebox));
+    border:1px solid color-mix(in oklab, var(--bluebox) 70%, var(--line));
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+
+    font-weight:900;
+    letter-spacing:.02em;
+
+    transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, border-color var(--t-med) ease, background var(--t-med) ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .nav a::after{
+    content:"";
+    position:absolute; inset:0;
+    background: radial-gradient(60% 110% at 15% 0%, rgba(255,93,143,.18), transparent 60%),
+                radial-gradient(70% 120% at 100% 0%, rgba(0,229,255,.14), transparent 60%);
+    opacity:0;
+    transition: opacity var(--t-med) ease;
+    pointer-events:none;
+  }
+  .nav a:hover{ transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+  .nav a:hover::after{ opacity:1; }
+  .nav a.active{
+    outline:2px solid color-mix(in oklab, var(--accent-ring) 55%, transparent);
+    border-color: color-mix(in oklab, var(--accent-ring) 42%, var(--line));
+  }
+  .nav a[aria-current="page"]{
+    outline:2px solid color-mix(in oklab, var(--accent-ring) 55%, transparent);
+  }
+  .nav a .dot{
+    width:8px; height:8px; border-radius:999px;
+    background: color-mix(in oklab, var(--muted) 70%, transparent);
+    box-shadow: 0 0 0 2px rgba(0,0,0,.15);
+  }
+  .nav a.active .dot{
+    background: linear-gradient(180deg, var(--primary), var(--primary-2));
+    box-shadow: 0 0 14px rgba(0,229,255,.25);
+  }
+
+  .sidebar .tools{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:14px;
+    border:1px solid color-mix(in oklab, var(--line) 88%, transparent);
+    background:linear-gradient(180deg,color-mix(in oklab,var(--card) 85%,transparent),var(--card));
+    box-shadow:var(--shadow);
+    font-weight:800;
+    color:var(--text);
+    cursor:pointer;
+    text-decoration:none;
+    transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, border-color var(--t-med) ease, filter var(--t-med) ease;
+    user-select:none;
+    will-change: transform;
+  }
+  .btn:hover{box-shadow:var(--shadow-soft); transform:translateY(-2px)}
+  .btn:active{transform: translateY(0px) scale(.985)}
+  .btn-primary{
+    border-color:color-mix(in oklab,var(--primary) 55%, var(--line));
+    background:
+      radial-gradient(60% 120% at 20% 0%, rgba(255,93,143,.25), transparent 60%),
+      radial-gradient(70% 120% at 100% 0%, rgba(0,229,255,.22), transparent 60%),
+      linear-gradient(180deg, color-mix(in oklab, var(--primary) 40%, var(--card)), var(--card));
+  }
+  #themeBtn{
+    border-color:color-mix(in oklab, var(--line) 70%, transparent);
+    background: color-mix(in oklab, var(--card) 35%, transparent);
+    box-shadow:none
+  }
+  .btn.active{
+    outline:2px solid color-mix(in oklab, var(--accent-ring) 55%, transparent);
+    border-color: color-mix(in oklab, var(--accent-ring) 40%, var(--line));
+  }
+
+  /* Mobile nav toggle */
+  .nav-toggle{
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:14px;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--bluebox) 92%, transparent), var(--bluebox));
+    border:1px solid color-mix(in oklab, var(--bluebox) 70%, var(--line));
+    color:#fff;
+    font-weight:900;
+    letter-spacing:.02em;
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+    cursor:pointer;
+  }
+  .nav-toggle span{opacity:.95}
+  .nav-toggle i{font-style:normal; font-weight:900}
+
+  /* ===== Onglets/boutons — remap complet via var(--bluebox) ===== */
+  .tabs a,
+  .tabs button,
+  #certifs .toolbar a,
+  #stages .toolbar a,
+  #contact .toolbar a {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--bluebox) 92%, transparent), var(--bluebox)) !important;
+    color: #fff !important;
+    border: 1px solid color-mix(in oklab, var(--bluebox) 70%, var(--line)) !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  }
+  .tabs a:hover,
+  .tabs button:hover,
+  #certifs .toolbar a:hover,
+  #stages .toolbar a:hover,
+  #contact .toolbar a:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: color-mix(in oklab, var(--accent-ring) 35%, var(--line));
+  }
+
+  .pill, .badge{
+    background: linear-gradient(180deg, color-mix(in oklab, var(--bluebox) 92%, transparent), var(--bluebox));
+    color:#fff;
+    border:1px solid color-mix(in oklab, var(--bluebox) 70%, var(--line));
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  }
+
+  /* ===== Main content ===== */
+  main{position:relative}
+  .container{max-width:var(--container); margin:0 auto; padding:38px 24px}
+  section{padding:56px 0}
+  section[id]{scroll-margin-top: 18px;}
+  h1{font-size:clamp(36px,5vw,60px); line-height:1.02; margin:0 0 8px; letter-spacing:-.02em}
+  h2{font-size:clamp(26px,3.6vw,38px); margin:0 0 10px; letter-spacing:-.01em}
+  h3{font-size:20px; margin:0 0 6px}
+  .lead{font-size:clamp(16px,2vw,19px); color:var(--muted)}
+  .muted{color:var(--muted)}
+  .grid-2{display:grid; gap:18px}
+  .grid-3{display:grid; gap:18px}
+  .grid-2-even{display:grid; gap:18px}
+  @media(min-width:980px){
+    .grid-2{grid-template-columns:1.08fr .92fr}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2-even{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* nicer lists */
+  .list{margin:10px 0 0; padding-left:18px}
+  .list li{margin:8px 0; color: color-mix(in oklab, var(--text) 92%, var(--muted))}
+  .list li::marker{color: color-mix(in oklab, var(--primary-2) 65%, #fff)}
+
+  /* ===== Cartes ===== */
+  .card{
+    border:1px solid color-mix(in oklab, var(--line) 92%, transparent);
+    border-radius:var(--radius-2);
+    padding:20px;
+
+    background:
+      radial-gradient(120% 200% at -10% -10%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 60%),
+      radial-gradient(120% 200% at 110% -30%, color-mix(in oklab, var(--primary-2) 18%, transparent), transparent 60%),
+      linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), var(--card));
+
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+    transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, border-color var(--t-med) ease;
+    will-change: transform;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background: radial-gradient(70% 60% at 12% 0%, rgba(255,93,143,.14), transparent 60%),
+                radial-gradient(80% 70% at 100% 0%, rgba(0,229,255,.12), transparent 62%);
+    opacity:.0;
+    transition: opacity var(--t-med) ease;
+    pointer-events:none;
+  }
+  .card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-soft);
+    border-color:color-mix(in oklab,var(--accent-ring) 35%, var(--line));
+  }
+  .card:hover::before{opacity:1}
+
+  .tag{
+    display:inline-block;
+    border:1px solid color-mix(in oklab, var(--line) 90%, transparent);
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:12px;
+    color:var(--muted);
+    background: color-mix(in oklab, var(--card) 78%, transparent);
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; border-radius:999px; padding:6px 10px;
+    font-weight:800;
+  }
+  .pill{border-radius:14px; padding:8px 12px}
+  .toolbar{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+
+  /* Inputs */
+  input[type="search"], select{
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid color-mix(in oklab, var(--line) 85%, transparent);
+    background: color-mix(in oklab, var(--card) 88%, transparent);
+    color: var(--text);
+    box-shadow: 0 12px 28px rgba(0,0,0,.12);
+    outline:none;
+    min-width: 240px;
+    transition: border-color var(--t-med) ease, box-shadow var(--t-med) ease, transform var(--t-fast) ease;
+  }
+  input[type="search"]::placeholder{color: color-mix(in oklab, var(--muted) 75%, transparent)}
+  select{min-width: 220px}
+  input[type="search"]:focus-visible, select:focus-visible{
+    box-shadow: var(--focus);
+    border-color: color-mix(in oklab, var(--accent-ring) 35%, var(--line));
+    transform: translateY(-1px);
+  }
+
+  .hero-graphic .ui-box { fill: var(--ui-box); stroke: var(--ui-stroke); }
+  .hero-graphic .ui-bar { fill: var(--ui-box-2); }
+  .hero-graphic .ui-base { fill: var(--ui-box-3); }
+
+  .hero-graphic{
+    border:1px dashed color-mix(in oklab, var(--primary-2) 40%, var(--line));
+    background:linear-gradient(180deg, color-mix(in oklab, var(--card) 88%,transparent), var(--card));
+    border-radius:var(--radius-2);
+    box-shadow:var(--shadow);
+    display:flex; align-items:center; justify-content:center;
+    padding:14px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-graphic::after{
+    content:"";
+    position:absolute; inset:-1px;
+    background: radial-gradient(90% 90% at 30% 10%, rgba(255,93,143,.12), transparent 60%),
+                radial-gradient(80% 90% at 85% 15%, rgba(0,229,255,.10), transparent 62%);
+    pointer-events:none;
+    opacity:.9;
+  }
+
+  .stats{
+    display:grid;
+    gap:10px;
+    margin-top:14px;
+  }
+  @media(min-width:980px){
+    .stats{ grid-template-columns: repeat(3, 1fr); }
+  }
+  .stat{
+    display:flex; gap:10px; align-items:flex-start;
+    padding:12px 12px;
+    border-radius:16px;
+    border:1px solid color-mix(in oklab, var(--line) 85%, transparent);
+    background: color-mix(in oklab, var(--card) 74%, transparent);
+    box-shadow: 0 10px 22px rgba(0,0,0,.14);
+  }
+  .stat b{display:block; font-size:13px; letter-spacing:.02em}
+  .stat small{display:block; margin-top:2px; color:var(--muted); font-weight:700}
+  .ico{
+    width:34px; height:34px; border-radius:12px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--bluebox) 92%, transparent), var(--bluebox));
+    border:1px solid color-mix(in oklab, var(--bluebox) 70%, var(--line));
+    box-shadow: 0 10px 22px rgba(0,0,0,.18);
+    flex:0 0 auto;
+  }
+  .ico svg{width:18px; height:18px; fill:#fff; opacity:.95}
+
+  .tp-grid{display:grid; gap:18px}
+  @media(min-width:900px){.tp-grid{grid-template-columns:repeat(3,1fr)}}
+  .tp-card h4{margin:.2rem 0 .4rem}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1; transform:none;}
+
+  /* Modales */
+  .modal{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.62);
+    display:none;
+    z-index:100;
+  }
+  .modal.open{display:block}
+  .modal-box{
+    position:absolute; inset:5%;
+    background:var(--card);
+    border:1px solid color-mix(in oklab, var(--line) 88%, transparent);
+    border-radius:18px;
+    box-shadow:0 22px 80px rgba(0,0,0,.55);
+    display:flex; flex-direction:column;
+    overflow:hidden;
+  }
+  .modal-bar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 14px;
+    border-bottom:1px solid color-mix(in oklab, var(--line) 88%, transparent);
+    gap:12px;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--card) 88%, transparent), var(--card));
+  }
+  .modal-actions{display:flex; gap:8px; flex-wrap:wrap}
+  .modal-frame{flex:1; border:0; width:100%; border-radius:0 0 16px 16px; background:#000}
+
+  /* Responsive */
+  @media(max-width:980px){
+    body{grid-template-columns:1fr}
+    .sidebar{
+      position:sticky;
+      top:0;
+      height:auto;
+      border-right:0;
+      border-bottom:1px solid color-mix(in oklab, var(--line) 88%, transparent);
+      padding:14px 14px;
+    }
+    .nav-toggle{display:flex}
+    .nav{display:none}
+    .nav.open{display:flex}
+    .container{padding:28px 16px}
+    section{padding:44px 0}
+  }
+
+  .section-kicker{
+    font-weight:900; letter-spacing:.08em; text-transform:uppercase;
+    display:inline-block; padding:6px 10px; border-radius:999px;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--bluebox) 92%, transparent), var(--bluebox));
+    border:1px solid color-mix(in oklab, var(--bluebox) 70%, var(--line));
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  }
+
+  /* ===== Galerie (images NON cliquables) ===== */
+  .gallery-grid{display:grid; gap:18px}
+  @media(min-width:900px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+
+  .media-item{
+    border-radius:16px;
+    border:1px solid color-mix(in oklab, var(--line) 88%, transparent);
+    overflow:hidden;
+    background:linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), var(--card));
+    box-shadow: 0 12px 28px rgba(0,0,0,.20);
+    transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, border-color var(--t-med) ease;
+  }
+  .media-item:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: color-mix(in oklab, var(--accent-ring) 30%, var(--line));
+  }
+  .media-item img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    display:block;
+    background: color-mix(in oklab, var(--card) 80%, transparent);
+  }
+  .media-item video{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    display:block;
+    background:#000;
+  }
+  .media-caption{
+    padding:10px 12px;
+    font-size:13px;
+    color:var(--muted);
+    border-top:1px solid color-mix(in oklab, var(--line) 88%, transparent);
+  }
+
+  /* Floating actions */
+  .fab{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    z-index:999;
+  }
+  .fab .btn{box-shadow: var(--shadow-soft)}
+  .fab .btn[hidden]{display:none !important;}
+
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:18px;
+    transform: translateX(-50%);
+    background: color-mix(in oklab, var(--card) 92%, transparent);
+    border:1px solid color-mix(in oklab, var(--line) 88%, transparent);
+    color: var(--text);
+    border-radius: 14px;
+    padding: 10px 12px;
+    box-shadow: var(--shadow-soft);
+    display:none;
+    z-index:1001;
+    max-width:min(620px, calc(100vw - 24px));
+  }
+  .toast.show{display:block}
+
+  /* small divider */
+  .soft-hr{
+    border:0;
+    height:1px;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--muted) 35%, transparent), transparent);
+    margin:28px 0;
+    opacity:.9;
+  }
+  /* Animation de texte "Typing" */
+.typing {
+  display: inline-block;
+  border-right: 3px solid var(--primary-2);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 2.5s steps(25, end) forwards, blink-caret .75s step-end infinite;
+}
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--primary-2); } }
+
+/* Animation de flottement pour l'illustration */
+.hero-graphic svg {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Halo lumineux qui suit la souris */
+.mouse-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.07) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+</style>
+</head>
+
+<body>
+  <div class="mouse-glow" id="mouseGlow"></div>
+  <a class="skip-link" href="#accueil">Aller au contenu</a>
+
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <a class="brand" href="#accueil" aria-label="Aller à l'accueil">
+      <span class="name">CHASSOL Mathis</span>
+      <small>BTS SIO — SISR</small>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+      <span>Menu</span><i id="navIcon">＋</i>
+    </button>
+
+    <nav class="nav" id="mainNav" aria-label="Navigation principale">
+      <a href="#accueil" class="active" aria-current="page">Accueil <span class="dot" aria-hidden="true"></span></a>
+      <a href="#bts">BTS SIO <span class="dot" aria-hidden="true"></span></a>
+      <a href="#veille">Veille <span class="dot" aria-hidden="true"></span></a>
+      <a href="#stages">Stages <span class="dot" aria-hidden="true"></span></a>
+      <a href="#certifs">TP/Projets/Certifications <span class="dot" aria-hidden="true"></span></a>
+      <a href="#contact">Contact <span class="dot" aria-hidden="true"></span></a>
+    </nav>
+
+    <div class="tools">
+      <a class="btn btn-primary" href="#certifs">Voir mes travaux</a>
+      <a class="btn" href="docs/CV_CHASSOL Mathis Alternance.pdf" target="_blank" rel="noopener">Voir mon CV</a>
+      <button id="themeBtn" class="btn" aria-label="Changer le thème" title="Changer le thème">🌙</button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main id="main">
+    <!-- ACCUEIL -->
+    <section id="accueil" class="container reveal">
+      <div class="grid-2">
+        <div>
+</h1>
+       <h1>
+  <span class="typing">CHASSOL Mathis</span>
+</h1>
+            <span style="color:#fff !important; background:none !important; -webkit-background-clip:initial !important; background-clip:initial !important; filter:none !important;"></span>
+          </h1>
+
+          <p class="lead">
+            Étudiant en <strong>BTS SIO</strong> – option <strong>SISR</strong>.
+            Administration réseau, sécurité et fiabilité des services.
+          </p>
+
+          <div class="toolbar tabs" style="margin:16px 0 8px">
+            <a class="btn btn-primary" href="#certifs">Voir mes travaux</a>
+            <a class="btn" href="docs/CV_CHASSOL Mathis Alternance.pdf" target="_blank" rel="noopener">Voir mon CV</a>
+            <a class="btn" href="docs/CV_CHASSOL Mathis Alternance.pdf" download>Télécharger le CV</a>
+          </div>
+
+          <div class="toolbar">
+            <span class="badge">BTS SIO SISR</span>
+            <span class="badge">Réseaux</span>
+            <span class="badge">Systèmes</span>
+            <span class="badge">Sécurité</span>
+            <span class="badge">Virtualisation</span>
+          </div>
+
+          <!-- Mini “stats/USP” (design + crédibilité) -->
+          <div class="stats">
+            <div class="stat">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16v4H4V4zm0 6h10v4H4v-4zm0 6h16v4H4v-4z"/></svg>
+              </span>
+              <div>
+                <b>Infra & Admin</b>
+                <small>AD / DNS / DHCP, GPO, documentation</small>
+              </div>
+            </div>
+            <div class="stat">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 9.6-8 10-4.6-.4-8-5-8-10V6l8-4zm0 6a4 4 0 100 8 4 4 0 000-8z"/></svg>
+              </span>
+              <div>
+                <b>Sécurité</b>
+                <small>bonnes pratiques, accès, hygiène MDP</small>
+              </div>
+            </div>
+            <div class="stat">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 2h10v4H7V2zM4 8h16v14H4V8zm4 4v6h2v-6H8zm6 0v6h2v-6h-2z"/></svg>
+              </span>
+              <div>
+                <b>Virtualisation</b>
+                <small>Hyper-V / Proxmox, VM, tests & déploiement</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-graphic" aria-hidden="true">
+          <svg viewBox="0 0 520 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration réseau">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0%" stop-color="#ff5d8f"/>
+                <stop offset="100%" stop-color="var(--primary-2)"/>
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="6" result="b"/>
+                <feMerge>
+                  <feMergeNode in="b"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <circle cx="90" cy="80" r="10" fill="url(#g1)" filter="url(#glow)"/>
+            <circle cx="430" cy="80" r="10" fill="url(#g1)" filter="url(#glow)"/>
+            <circle cx="260" cy="160" r="10" fill="url(#g1)" filter="url(#glow)"/>
+            <circle cx="120" cy="250" r="10" fill="url(#g1)" filter="url(#glow)"/>
+            <circle cx="400" cy="250" r="10" fill="url(#g1)" filter="url(#glow)"/>
+            <path d="M90 80 L260 160 L430 80 M120 250 L260 160 L400 250" stroke="url(#g1)" stroke-width="3" fill="none" opacity=".9"/>
+            <rect class="ui-box" x="340" y="200" rx="10" ry="10" width="120" height="110"/>
+            <rect class="ui-bar" x="350" y="220" width="100" height="12" rx="6"/>
+            <rect class="ui-bar" x="350" y="245" width="100" height="12" rx="6"/>
+            <rect class="ui-bar" x="350" y="270" width="100" height="12" rx="6"/>
+            <circle cx="454" cy="226" r="3" fill="var(--primary-2)"/>
+            <circle cx="454" cy="251" r="3" fill="#22c55e"/>
+            <circle cx="454" cy="276" r="3" fill="#ff5d8f"/>
+            <rect class="ui-box" x="60" y="215" width="120" height="75" rx="8"/>
+            <rect class="ui-bar" x="70" y="225" width="100" height="45" rx="4"/>
+            <rect class="ui-base" x="52" y="292" width="136" height="12" rx="6"/>
+            <text x="260" y="330" text-anchor="middle" fill="url(#g1)" font-size="22" font-weight="800">BTS SIO • SISR</text>
+          </svg>
+        </div>
+        <div class="card" style="margin-top: 24px;">
+  <h3 style="color: var(--primary-2);">Projets personnels</h3>
+  <p class="muted">
+    Suite à l'acceptation de ma candidature lors de mon entretien, j'ai décidé de poursuivre mes études en 
+    <strong>Licence 3e année STS</strong> (Parcours Réseaux et Cyber-sécurité) au sein du 
+    <strong>Lycée Le Rebours</strong> (Paris 13e).
+  </p>
+</div>
+      </div>
+    </section>
+
+    <!-- BTS SIO -->
+    <section id="bts" class="reveal">
+      <div class="container">
+        <h2>BTS SIO — Option SISR</h2>
+        <p class="muted">Parcours orienté <strong>infrastructures</strong> : réseaux, systèmes et sécurité pour assurer la continuité de service.</p>
+
+        <div class="grid-3" style="margin-top:18px">
+          <div class="card">
+            <h3>Compétences visées</h3>
+            <ul class="list">
+              <li>Déployer & <strong>administrer</strong> postes/serveurs (AD, DNS, DHCP).</li>
+              <li>Concevoir & <strong>segmenter</strong> un réseau (VLAN, routage, Wi-Fi).</li>
+              <li><strong>Sécuriser</strong> les accès, sauvegarder & superviser.</li>
+              <li><a href="docs/Tableau_de_synthese_BTS CHASSOL Mathis.pdf" target="_blank" style="color: var(--primary-2); font-weight: 800; text-decoration: none;">→ Accéder au Tableau de synthese</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Contenus clés</h3>
+            <ul class="list">
+              <li>Virtualisation (Hyper-V/VMware), scripts & automatisation.</li>
+              <li>Protocoles : TCP/IP, ports, services, diagnostics.</li>
+              <li>Stockage : partitions, NTFS, <strong>RAID</strong>, sauvegardes.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Évaluation & outils</h3>
+            <ul class="list">
+              <li>Épreuves <strong>E4/E5</strong>, dossiers et <strong>stages</strong>.</li>
+              <li>Outils : Windows Server, Linux, Packet Tracer, KeePass.</li>
+              <li>Bonnes pratiques ITIL & documentation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="soft-hr">
+
+        <h2>Option SLAM</h2>
+        <p class="muted">Parcours orienté <strong>développement</strong> : applications web, API, bases de données et qualité logicielle.</p>
+
+        <div class="grid-3" style="margin-top:18px">
+          <div class="card">
+            <h3>Compétences visées</h3>
+            <ul class="list">
+              <li><strong>Concevoir</strong> et modéliser (UML, MCD/MLD).</li>
+              <li><strong>Développer</strong> des applications web/API (MVC, REST).</li>
+              <li><strong>Gérer</strong> les données : SQL, optimisation de requêtes.</li>
+              <li><strong>Qualité</strong> : tests unitaires/intégration, revues de code.</li>
+              <li><strong>Industrialisation</strong> : Git, CI/CD basique.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Contenus clés</h3>
+            <ul class="list">
+              <li>POO & patterns (DAO, MVC, couche service).</li>
+              <li>Back-end : PHP (Laravel/Symfony) ou Node.js (Express).</li>
+              <li>Front-end : HTML/CSS/JS, notions de React/Vue.</li>
+              <li>Base : MySQL/PostgreSQL, ORM (Eloquent/Doctrine).</li>
+              <li>Sécurité applicative : validation, auth, OWASP Top 10.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Évaluation & outils</h3>
+            <ul class="list">
+              <li>Épreuves <strong>E4/E5</strong>, projets tutorés et stages.</li>
+              <li>Outils : VS Code, Git/GitHub, Docker (dev), Postman.</li>
+              <li>Méthodes : Agile (Scrum), tickets & documentation.</li>
+            </ul>
+            <div class="toolbar" style="margin-top:8px;gap:8px;flex-wrap:wrap">
+              <span class="badge">API REST</span>
+              <span class="badge">SQL</span>
+              <span class="badge">POO</span>
+              <span class="badge">Git</span>
+              <span class="badge">Tests</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VEILLE ===== -->
+    <section id="veille" class="container reveal">
+      <h2>Veille technologique</h2>
+      <p class="muted">Sujet : Les chatbots</p>
+      <div class="card">
+        <h3>Les grandes idées</h3>
+        <ul class="list">
+          <li>Les chatbots, ou agents conversationnels, sont devenus essentiels dans la transformation numérique.</li>
+          <li>Ils reposent sur le traitement du langage naturel (NLP) et l’apprentissage automatique.</li>
+          <li>Leur usage s’étend aux domaines du service client, de l’éducation, de la santé et de l’entreprise.</li>
+          <li>Les grandes entreprises (OpenAI, Google, Meta, Mistral AI…) dominent le marché.</li>
+          <li>Les utilisateurs recherchent rapidité, personnalisation et confidentialité.</li>
+          <li>Les chatbots modernes sont multimodaux : texte, voix, image, vidéo.</li>
+          <li>Les enjeux majeurs concernent la sécurité des données et la conformité au RGPD.</li>
+        </ul>
+
+        <div class="toolbar tabs" style="margin-top:16px;flex-wrap:wrap;gap:10px">
+          <a class="btn open-pdf" data-pdf="docs/Veille_Technologique_Chatbots_Mathis_Chassol.pdf" href="docs/Veille_Technologique_Chatbots_Mathis_Chassol.pdf">Ouvrir la veille (PDF)</a>
+          <a class="btn" href="docs/Veille_Technologique_Chatbots_Mathis_Chassol.pdf" download>Télécharger</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VEILLE CYBERSÉCURITÉ ===== -->
+    <section id="veille-cyber" class="container reveal">
+      <h2>Veille cybersécurité</h2>
+      <p class="muted">Sujet : Sécurité et conformité des chatbots</p>
+      <div class="card">
+        <h3>Les grandes idées</h3>
+        <ul class="list">
+          <li>Les chatbots collectent et traitent des données sensibles, souvent via le cloud.</li>
+          <li>Le RGPD impose la transparence, la sécurité et le consentement des utilisateurs.</li>
+          <li>L’AI Act européen (2024) encadre les systèmes d’IA jugés “à haut risque”.</li>
+          <li>Une supervision humaine reste obligatoire pour les décisions critiques.</li>
+          <li>Les risques principaux : fuite de données, biais des modèles, manque d’interprétation du contexte.</li>
+          <li>La CNIL recommande une traçabilité claire et un contrôle humain sur l’IA.</li>
+          <li>Les entreprises doivent adopter une IA plus éthique et souveraine, notamment en Europe.</li>
+        </ul>
+        <div class="toolbar tabs" style="margin-top:16px;flex-wrap:wrap;gap:10px">
+  <a class="btn open-pdf" data-pdf="docs/Veille_Cybersécurité_Chatbots_Mathis_Chassol.pdf" href="docs/Veille_Cybersécurité_Chatbots_Mathis_Chassol.pdf">Ouvrir la veille Cyber (PDF)</a>
+  <a class="btn" href="docs/Veille_Cybersécurité_Chatbots_Mathis_Chassol.pdf" download>Télécharger</a>
+</div>
+    </section>
+
+    <!-- STAGES -->
+    <section id="stages" class="container reveal">
+      <!-- ===================== STAGE 1 ===================== -->
+      <h2>Stages n°1</h2>
+      <p class="muted">Expérience en environnement de production : support, réseau et sécurité.</p>
+
+      <div class="grid-2-even" style="margin-top:18px">
+        <div class="card">
+          <h3>Résumé (bref)</h3>
+          <ul class="list">
+            <li>Support utilisateurs (prise en main à distance, tickets).</li>
+            <li>Administration <strong>Active Directory</strong> (comptes, groupes, domaine).</li>
+            <li>Dépannages : audio/visioconf, périphériques, PDF (Adobe).</li>
+            <li>Diagnostic réseau : prise RJ45, tests de ports de switch.</li>
+            <li>Sensibilisation sécurité (KeePass, hygiène MDP).</li>
+          </ul>
+          <div class="toolbar tabs" style="margin-top:10px;gap:10px;flex-wrap:wrap">
+            <a class="btn open-pdf" data-pdf="docs/Support et mise à  disposition de services informatiques + note de synthèse Chassol Mathis.pdf" href="docs/Support et mise à  disposition de services informatiques + note de synthèse Chassol Mathis.pdf">Lire le rapport (PDF)</a>
+            <a class="btn" href="docs/Support et mise à  disposition de services informatiques + note de synthèse Chassol Mathis.pdf" download>Télécharger</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Ce que j’ai appris</h3>
+          <ul class="list">
+            <li>Prioriser et communiquer clairement avec les utilisateurs.</li>
+            <li>Méthode de diagnostic (poste ↔ prise ↔ switch).</li>
+            <li>Solutions de contournement efficaces.</li>
+            <li>Documentation & gestion sécurisée des accès.</li>
+          </ul>
+          <p class="muted" style="margin-top:8px">Le détail complet est dans le rapport.</p>
+        </div>
+      </div>
+
+      <!-- Galerie STAGE 1 (NON cliquable) -->
+      <div class="card" style="margin-top:18px">
+        <h3>Photos & Vidéos de stage</h3>
+
+        <div class="gallery-grid" style="margin-top:12px">
+          <!-- Photos -->
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7368.jpeg|assets/stage/IMG_7368.JPG|assets/stage/IMG_7368.JPEG|assets/stage/IMG_7368.png|assets/stage/IMG_7368.PNG" src="assets/stage/IMG_7368.jpeg" alt="Régie / montage : diagnostic audio & micros">
+            <div class="media-caption">Régie / montage : diagnostic audio & micros</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7457.jpeg|assets/stage/IMG_7457.JPG|assets/stage/IMG_7457.JPEG|assets/stage/IMG_7457.png|assets/stage/IMG_7457.PNG" src="assets/stage/IMG_7457.jpeg" alt="Plateau : contrôle lumière & équipements">
+            <div class="media-caption">Plateau : contrôle lumière & équipements</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7453.jpeg|assets/stage/IMG_7453.JPG|assets/stage/IMG_7453.JPEG|assets/stage/IMG_7453.png|assets/stage/IMG_7453.PNG" src="assets/stage/IMG_7453.jpeg" alt="Infrastructure de plateau : rails caméra & monitoring">
+            <div class="media-caption">Infrastructure de plateau : rails caméra & monitoring</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7410.jpeg|assets/stage/IMG_7410.JPG|assets/stage/IMG_7410.JPEG|assets/stage/IMG_7410.png|assets/stage/IMG_7410.PNG" src="assets/stage/IMG_7410.jpeg" alt="Visite technique : salle & affichage">
+            <div class="media-caption">Visite technique : salle & affichage</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7411.jpeg|assets/stage/IMG_7411.JPG|assets/stage/IMG_7411.JPEG|assets/stage/IMG_7411.png|assets/stage/IMG_7411.PNG" src="assets/stage/IMG_7411.jpeg" alt="Contrôle d’éclairage & organisation salle">
+            <div class="media-caption">Contrôle d’éclairage & organisation salle</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7362.jpeg|assets/stage/IMG_7362.JPG|assets/stage/IMG_7362.JPEG|assets/stage/IMG_7362.png|assets/stage/IMG_7362.PNG" src="assets/stage/IMG_7362.jpeg" alt="Installation & intégration d’un poste au domaine">
+            <div class="media-caption">Installation & intégration d’un poste au domaine</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7458.jpeg|assets/stage/IMG_7458.JPG|assets/stage/IMG_7458.JPEG|assets/stage/IMG_7458.png|assets/stage/IMG_7458.PNG" src="assets/stage/IMG_7458.jpeg" alt="Plateau — autre angle : salon & éclairage">
+            <div class="media-caption">Plateau — autre angle : salon & éclairage</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7374.jpeg|assets/stage/IMG_7374.JPG|assets/stage/IMG_7374.JPEG|assets/stage/IMG_7374.png|assets/stage/IMG_7374.PNG" src="assets/stage/IMG_7374.jpeg" alt="Plateau — rails caméra & pupitres">
+            <div class="media-caption">Plateau — rails caméra & pupitres</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7464.jpeg|assets/stage/IMG_7464.JPG|assets/stage/IMG_7464.JPEG|assets/stage/IMG_7464.png|assets/stage/IMG_7464.PNG" src="assets/stage/IMG_7464.jpeg" alt="Plateau — vue large & installation">
+            <div class="media-caption">Plateau — vue large & installation</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7414.jpeg|assets/stage/IMG_7414.JPG|assets/stage/IMG_7414.JPEG|assets/stage/IMG_7414.png|assets/stage/IMG_7414.PNG" src="assets/stage/IMG_7414.jpeg" alt="Salle — caméra sur rail & scène">
+            <div class="media-caption">Salle — caméra sur rail & scène</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7363.jpeg|assets/stage/IMG_7363.JPG|assets/stage/IMG_7363.JPEG|assets/stage/IMG_7363.png|assets/stage/IMG_7363.PNG" src="assets/stage/IMG_7363.jpeg" alt="Poste de montage — interface audio">
+            <div class="media-caption">Poste de montage — interface audio</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7364.jpeg|assets/stage/IMG_7364.JPG|assets/stage/IMG_7364.JPEG|assets/stage/IMG_7364.png|assets/stage/IMG_7364.PNG" src="assets/stage/IMG_7364.jpeg" alt="Régie — montage son/image">
+            <div class="media-caption">Régie — montage son/image</div>
+          </div>
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_7373.jpeg|assets/stage/IMG_7373.JPG|assets/stage/IMG_7373.JPEG|assets/stage/IMG_7373.png|assets/stage/IMG_7373.PNG" src="assets/stage/IMG_7373.jpeg" alt="Baies / rack — câblage & équipements">
+            <div class="media-caption">Baies / rack — câblage & équipements</div>
+          </div>
+
+          <!-- Vidéos -->
+          <div class="media-item">
+            <video controls playsinline preload="metadata" src="assets/stage/5DC5C684-EF05-4D1A-9661-F7B097BE6E06.MP4"></video>
+            <div class="media-caption">Vidéo — test plateau 1</div>
+          </div>
+          <div class="media-item">
+            <video controls playsinline preload="metadata" src="assets/stage/24AEF5E9-7BA8-4E31-A997-30C632F4BA1B.MP4"></video>
+            <div class="media-caption">Vidéo — test plateau 2</div>
+          </div>
+          <div class="media-item">
+            <video controls playsinline preload="metadata" src="assets/stage/E58447A0-43B1-4E5A-A211-C298DC41DE35.mp4"></video>
+            <div class="media-caption">Vidéo — stage (nouvelle)</div>
+          </div>
+        </div>
+
+        <div class="toolbar" style="margin-top:12px;gap:10px;flex-wrap:wrap">
+          <span class="badge">Active Directory</span>
+          <span class="badge">KeePass</span>
+          <span class="badge">TCP/IP</span>
+          <span class="badge">Dépannage réseau</span>
+        </div>
+      </div>
+
+      <hr class="soft-hr">
+
+      <!-- ===================== STAGE 2 ===================== -->
+      <h2>Stages n°2</h2>
+      <p class="muted">Deuxième expérience : mêmes blocs (résumé / apprentissages) + rapport PDF + galerie.</p>
+
+      <div class="grid-2-even" style="margin-top:18px">
+        <div class="card">
+          <h3>Résumé (bref)</h3>
+          <ul class="list">
+            <li>Réinitialisation / installation de postes + intégration au <strong>domaine (Active Directory)</strong>.</li>
+            <li>Création de comptes utilisateurs, gestion des mots de passe (outils de contrôle à distance & gestion sécurisée).</li>
+            <li>Mise en place réseau : ajout d’un <strong>VPN</strong> dans le <strong>NPS</strong> + groupes d’utilisateurs autorisés.</li>
+            <li>Création de clés <strong>USB bootables</strong> (images ISO) pour déploiement / installation.</li>
+            <li>Virtualisation sur <strong>Proxmox</strong> : déploiement de VM Linux/Windows (Rocky Linux, Ubuntu…), réseau commun.</li>
+            <li>Automatisation / déploiement : <strong>Foreman, PXE, Puppet, Clonezilla</strong> (déploiement, duplication, gestion).</li>
+            <li>Interventions clients (Paris – audiovisuel) : <strong>étalonnage d’écrans</strong>, installation Windows 11, déploiements à distance.</li>
+            <li>Documentation & inventaire : schémas réseau, liaisons inter-switch, tableaux Excel matériel, diag Power Automate (tri doublons e-mail).</li>
+            <li>Linux & conteneurisation : installation d’un service <strong>Piwigo via Docker</strong>.</li>
+          </ul>
+
+          <div class="toolbar tabs" style="margin-top:10px;gap:10px;flex-wrap:wrap">
+            <a class="btn open-pdf" data-pdf="docs/Note de synthèse stage de 2ème année Chassol Mathis.pdf" href="docs/Note de synthèse stage de 2ème année Chassol Mathis.pdf">Lire le rapport (PDF)</a>
+            <a class="btn" href="docs/Note de synthèse stage de 2ème année Chassol Mathis.pdf" download>Télécharger</a> <a class="btn open-pdf" data-pdf="docs/Cahier_des_charges_Chassol_Mathis_SISR.pdf" href="docs/Cahier_des_charges_Chassol_Mathis_SISR.pdf">Cahier des charges</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Ce que j’ai appris</h3>
+          <ul class="list">
+            <li>Mettre en place un poste “propre” en entreprise : installation, intégration AD, comptes & droits.</li>
+            <li>Structurer un accès distant : logique <strong>NPS/VPN</strong>, groupes autorisés et contrôle des accès.</li>
+            <li>Gagner du temps via l’<strong>automatisation</strong> (PXE, Foreman, Puppet, Clonezilla) plutôt que du “tout manuel”.</li>
+            <li>Mieux maîtriser la <strong>virtualisation Proxmox</strong> : création de VM, OS variés, réseau partagé, tests.</li>
+            <li>Travailler en contexte client (déplacements, contraintes, rendu attendu) et s’adapter rapidement.</li>
+            <li>Produire une <strong>documentation claire</strong> : schémas réseau, inventaire matériel, procédures.</li>
+            <li>Comprendre les bases de la <strong>conteneurisation Docker</strong> (images, conteneurs, commandes) via un cas concret (Piwigo).</li>
+          </ul>
+          <p class="muted" style="margin-top:8px">Le détail complet est dans le rapport.</p>
+        </div>
+      </div>
+
+      <!-- Galerie STAGE 2 (NON cliquable) -->
+      <div class="card" style="margin-top:18px">
+        <h3>Photos & Vidéos de stage</h3>
+
+        <div class="gallery-grid" style="margin-top:12px">
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_0E3FF55C-DF07-40D3-AF1F-35714530FB81.JPEG|assets/stage/IMG_0E3FF55C-DF07-40D3-AF1F-35714530FB81.jpeg|assets/stage/IMG_0E3FF55C-DF07-40D3-AF1F-35714530FB81.JPG|assets/stage/IMG_0E3FF55C-DF07-40D3-AF1F-35714530FB81.jpg|assets/stage/IMG_0E3FF55C-DF07-40D3-AF1F-35714530FB81.PNG|assets/stage/IMG_0E3FF55C-DF07-40D3-AF1F-35714530FB81.png" src="assets/stage/IMG_0E3FF55C-DF07-40D3-AF1F-35714530FB81.JPEG" alt="Stage 2 — Photo 1">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_0F321058-EB8B-48DF-AB25-60E07BAB3FE3.JPEG|assets/stage/IMG_0F321058-EB8B-48DF-AB25-60E07BAB3FE3.jpeg|assets/stage/IMG_0F321058-EB8B-48DF-AB25-60E07BAB3FE3.JPG|assets/stage/IMG_0F321058-EB8B-48DF-AB25-60E07BAB3FE3.jpg|assets/stage/IMG_0F321058-EB8B-48DF-AB25-60E07BAB3FE3.PNG|assets/stage/IMG_0F321058-EB8B-48DF-AB25-60E07BAB3FE3.png" src="assets/stage/IMG_0F321058-EB8B-48DF-AB25-60E07BAB3FE3.JPEG" alt="Stage 2 — Photo 2">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_02C2ACF4-6AF7-44D8-8D22-22C617F8EC0B.JPEG|assets/stage/IMG_02C2ACF4-6AF7-44D8-8D22-22C617F8EC0B.jpeg|assets/stage/IMG_02C2ACF4-6AF7-44D8-8D22-22C617F8EC0B.JPG|assets/stage/IMG_02C2ACF4-6AF7-44D8-8D22-22C617F8EC0B.jpg|assets/stage/IMG_02C2ACF4-6AF7-44D8-8D22-22C617F8EC0B.PNG|assets/stage/IMG_02C2ACF4-6AF7-44D8-8D22-22C617F8EC0B.png" src="assets/stage/IMG_02C2ACF4-6AF7-44D8-8D22-22C617F8EC0B.JPEG" alt="Stage 2 — Photo 3">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_2B58D85F-BEBE-49E4-A4DC-9BB5B8892DEB.JPEG|assets/stage/IMG_2B58D85F-BEBE-49E4-A4DC-9BB5B8892DEB.jpeg|assets/stage/IMG_2B58D85F-BEBE-49E4-A4DC-9BB5B8892DEB.JPG|assets/stage/IMG_2B58D85F-BEBE-49E4-A4DC-9BB5B8892DEB.jpg|assets/stage/IMG_2B58D85F-BEBE-49E4-A4DC-9BB5B8892DEB.PNG|assets/stage/IMG_2B58D85F-BEBE-49E4-A4DC-9BB5B8892DEB.png" src="assets/stage/IMG_2B58D85F-BEBE-49E4-A4DC-9BB5B8892DEB.JPEG" alt="Stage 2 — Photo 4">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_52FD899D-E887-454E-A040-EABF215678EF.JPEG|assets/stage/IMG_52FD899D-E887-454E-A040-EABF215678EF.jpeg|assets/stage/IMG_52FD899D-E887-454E-A040-EABF215678EF.JPG|assets/stage/IMG_52FD899D-E887-454E-A040-EABF215678EF.jpg|assets/stage/IMG_52FD899D-E887-454E-A040-EABF215678EF.PNG|assets/stage/IMG_52FD899D-E887-454E-A040-EABF215678EF.png" src="assets/stage/IMG_52FD899D-E887-454E-A040-EABF215678EF.JPEG" alt="Stage 2 — Photo 5">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_977AD6DB-62F1-4F63-B85B-233A5ED691A1.JPEG|assets/stage/IMG_977AD6DB-62F1-4F63-B85B-233A5ED691A1.jpeg|assets/stage/IMG_977AD6DB-62F1-4F63-B85B-233A5ED691A1.JPG|assets/stage/IMG_977AD6DB-62F1-4F63-B85B-233A5ED691A1.jpg|assets/stage/IMG_977AD6DB-62F1-4F63-B85B-233A5ED691A1.PNG|assets/stage/IMG_977AD6DB-62F1-4F63-B85B-233A5ED691A1.png" src="assets/stage/IMG_977AD6DB-62F1-4F63-B85B-233A5ED691A1.JPEG" alt="Stage 2 — Photo 6">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8791.jpeg|assets/stage/IMG_8791.JPG|assets/stage/IMG_8791.JPEG|assets/stage/IMG_8791.png|assets/stage/IMG_8791.PNG" src="assets/stage/IMG_8791.jpeg" alt="Stage 2 — IMG_8791">
+            <div class="media-caption">Stage 2 — IMG_8791</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8794.jpeg|assets/stage/IMG_8794.JPG|assets/stage/IMG_8794.JPEG|assets/stage/IMG_8794.png|assets/stage/IMG_8794.PNG" src="assets/stage/IMG_8794.jpeg" alt="Stage 2 — IMG_8794">
+            <div class="media-caption">Stage 2 — IMG_8794</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8800.jpeg|assets/stage/IMG_8800.JPG|assets/stage/IMG_8800.JPEG|assets/stage/IMG_8800.png|assets/stage/IMG_8800.PNG" src="assets/stage/IMG_8800.jpeg" alt="Stage 2 — IMG_8800">
+            <div class="media-caption">Stage 2 — IMG_8800</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/49c50252-ddf2-420c-9117-89b513aacff5.jpeg|assets/stage/49c50252-ddf2-420c-9117-89b513aacff5.JPG|assets/stage/49c50252-ddf2-420c-9117-89b513aacff5.JPEG|assets/stage/49c50252-ddf2-420c-9117-89b513aacff5.png|assets/stage/49c50252-ddf2-420c-9117-89b513aacff5.PNG" src="assets/stage/49c50252-ddf2-420c-9117-89b513aacff5.jpeg" alt="Stage 2 — Photo">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/748b803d-7c93-4361-ae2f-8f460dfb8b8b.jpeg|assets/stage/748b803d-7c93-4361-ae2f-8f460dfb8b8b.JPG|assets/stage/748b803d-7c93-4361-ae2f-8f460dfb8b8b.JPEG|assets/stage/748b803d-7c93-4361-ae2f-8f460dfb8b8b.png|assets/stage/748b803d-7c93-4361-ae2f-8f460dfb8b8b.PNG" src="assets/stage/748b803d-7c93-4361-ae2f-8f460dfb8b8b.jpeg" alt="Stage 2 — Photo">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/2d4e7a5d-1b24-4c58-9af8-c3bcb13a9b0c.jpeg|assets/stage/2d4e7a5d-1b24-4c58-9af8-c3bcb13a9b0c.JPG|assets/stage/2d4e7a5d-1b24-4c58-9af8-c3bcb13a9b0c.JPEG|assets/stage/2d4e7a5d-1b24-4c58-9af8-c3bcb13a9b0c.png|assets/stage/2d4e7a5d-1b24-4c58-9af8-c3bcb13a9b0c.PNG" src="assets/stage/2d4e7a5d-1b24-4c58-9af8-c3bcb13a9b0c.jpeg" alt="Stage 2 — Photo">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/b50bbc65-f4c6-47cd-adf3-da527fb839e6.JPG|assets/stage/b50bbc65-f4c6-47cd-adf3-da527fb839e6.jpg|assets/stage/b50bbc65-f4c6-47cd-adf3-da527fb839e6.jpeg|assets/stage/b50bbc65-f4c6-47cd-adf3-da527fb839e6.JPEG|assets/stage/b50bbc65-f4c6-47cd-adf3-da527fb839e6.PNG|assets/stage/b50bbc65-f4c6-47cd-adf3-da527fb839e6.png" src="assets/stage/b50bbc65-f4c6-47cd-adf3-da527fb839e6.JPG" alt="Stage 2 — Photo">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/2d63278f-24cc-4636-918a-1b56f057e288.PNG|assets/stage/2d63278f-24cc-4636-918a-1b56f057e288.png|assets/stage/2d63278f-24cc-4636-918a-1b56f057e288.JPG|assets/stage/2d63278f-24cc-4636-918a-1b56f057e288.jpeg|assets/stage/2d63278f-24cc-4636-918a-1b56f057e288.JPEG" src="assets/stage/2d63278f-24cc-4636-918a-1b56f057e288.PNG" alt="Stage 2 — Photo">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/d2230a78-25f9-43cc-a5a1-d98a2d2440ee.JPG|assets/stage/d2230a78-25f9-43cc-a5a1-d98a2d2440ee.jpg|assets/stage/d2230a78-25f9-43cc-a5a1-d98a2d2440ee.jpeg|assets/stage/d2230a78-25f9-43cc-a5a1-d98a2d2440ee.JPEG|assets/stage/d2230a78-25f9-43cc-a5a1-d98a2d2440ee.PNG|assets/stage/d2230a78-25f9-43cc-a5a1-d98a2d2440ee.png" src="assets/stage/d2230a78-25f9-43cc-a5a1-d98a2d2440ee.JPG" alt="Stage 2 — Photo">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/5b8f8ffa-6d1a-4e4f-a995-15121e234487.JPG|assets/stage/5b8f8ffa-6d1a-4e4f-a995-15121e234487.jpg|assets/stage/5b8f8ffa-6d1a-4e4f-a995-15121e234487.jpeg|assets/stage/5b8f8ffa-6d1a-4e4f-a995-15121e234487.JPEG|assets/stage/5b8f8ffa-6d1a-4e4f-a995-15121e234487.PNG|assets/stage/5b8f8ffa-6d1a-4e4f-a995-15121e234487.png" src="assets/stage/5b8f8ffa-6d1a-4e4f-a995-15121e234487.JPG" alt="Stage 2 — Photo">
+            <div class="media-caption">Stage 2 — Photo</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8803.jpeg|assets/stage/IMG_8803.JPG|assets/stage/IMG_8803.JPEG|assets/stage/IMG_8803.png|assets/stage/IMG_8803.PNG" src="assets/stage/IMG_8803.jpeg" alt="Stage 2 — IMG_8803">
+            <div class="media-caption">Stage 2 — IMG_8803</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8832.JPG|assets/stage/IMG_8832.jpg|assets/stage/IMG_8832.jpeg|assets/stage/IMG_8832.JPEG|assets/stage/IMG_8832.PNG|assets/stage/IMG_8832.png" src="assets/stage/IMG_8832.JPG" alt="Stage 2 — IMG_8832">
+            <div class="media-caption">Stage 2 — IMG_8832</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8901.PNG|assets/stage/IMG_8901.png|assets/stage/IMG_8901.JPG|assets/stage/IMG_8901.jpeg|assets/stage/IMG_8901.JPEG" src="assets/stage/IMG_8901.PNG" alt="Stage 2 — IMG_8901">
+            <div class="media-caption">Stage 2 — IMG_8901</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8902.JPG|assets/stage/IMG_8902.jpg|assets/stage/IMG_8902.jpeg|assets/stage/IMG_8902.JPEG|assets/stage/IMG_8902.PNG|assets/stage/IMG_8902.png" src="assets/stage/IMG_8902.JPG" alt="Stage 2 — IMG_8902">
+            <div class="media-caption">Stage 2 — IMG_8902</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8974.jpeg|assets/stage/IMG_8974.JPG|assets/stage/IMG_8974.JPEG|assets/stage/IMG_8974.png|assets/stage/IMG_8974.PNG" src="assets/stage/IMG_8974.jpeg" alt="Stage 2 — IMG_8974">
+            <div class="media-caption">Stage 2 — IMG_8974</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_8976.jpeg|assets/stage/IMG_8976.JPG|assets/stage/IMG_8976.JPEG|assets/stage/IMG_8976.png|assets/stage/IMG_8976.PNG" src="assets/stage/IMG_8976.jpeg" alt="Stage 2 — IMG_8976">
+            <div class="media-caption">Stage 2 — IMG_8976</div>
+          </div>
+
+          <div class="media-item">
+            <img loading="lazy" decoding="async" class="smart-img" data-srcs="assets/stage/IMG_9061.JPG|assets/stage/IMG_9061.jpg|assets/stage/IMG_9061.jpeg|assets/stage/IMG_9061.JPEG|assets/stage/IMG_9061.PNG|assets/stage/IMG_9061.png" src="assets/stage/IMG_9061.JPG" alt="Stage 2 — IMG_9061">
+            <div class="media-caption">Stage 2 — IMG_9061</div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="margin-top: 24px; border-left: 4px solid var(--primary-2);">
+  <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <span class="ico" style="background: var(--primary-2);">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+    </span>
+    <h3 style="margin: 0;">Mise en conformité RGPD</h3>
+  </div>
+  
+  <p class="muted">
+    Lors de mes expériences en entreprise, j'ai activement participé à la protection des données personnelles en appliquant les principes du <strong>RGPD</strong> :
+  </p>
+  
+  <div class="grid-3" style="margin-top: 15px; gap: 12px;">
+    <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid var(--line);">
+      <small style="color: var(--primary-2); font-weight: 800; text-transform: uppercase;">Sécurisation</small>
+      <p style="font-size: 13px; margin-top: 5px;">Mise en place de politiques de mots de passe robustes et chiffrement des accès via VPN/NPS.</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid var(--line);">
+      <small style="color: var(--primary-2); font-weight: 800; text-transform: uppercase;">Gestion des Droits</small>
+      <p style="font-size: 13px; margin-top: 5px;">Application du principe de "moindre privilège" lors de la création des comptes dans l'Active Directory.</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid var(--line);">
+      <small style="color: var(--primary-2); font-weight: 800; text-transform: uppercase;">Hygiène IT</small>
+      <p style="font-size: 13px; margin-top: 5px;">Nettoyage des bases de données et tri des doublons mails via Power Automate pour limiter la rétention inutile.</p>
+    </div>
+  </div>
+</div>
+    </section>
+
+    <!-- CERTIFICATIONS & TP -->
+    <section id="certifs" class="container reveal">
+      <h2>TP/Projets/Certifications</h2>
+
+      <p style="font-weight:900; margin:.2rem 0 .6rem; letter-spacing:.01em">TP</p>
+
+      <div class="toolbar tabs" style="margin:8px 0 12px;gap:10px;flex-wrap:wrap">
+        <button class="btn quick-filter active" data-theme="">Tous</button>
+        <button class="btn quick-filter" data-theme="SE">Systèmes</button>
+        <button class="btn quick-filter" data-theme="Virtualisation">Virtualisation</button>
+        <button class="btn quick-filter" data-theme="Stockage">Stockage & RAID</button>
+        <button class="btn quick-filter" data-theme="Réseau">Réseau</button>
+        <button class="btn quick-filter" data-theme="Sécurité">Sécurité</button>
+        <button class="btn quick-filter" data-theme="Linux">Linux</button>
+      </div>
+
+      <p class="muted">Tous mes <strong>TP</strong> sont listés ci-dessous : clique pour prévisualiser ou télécharger.</p>
+
+      <div class="toolbar" style="display:flex;flex-wrap:wrap;gap:12px; align-items:center">
+        <input id="tpSearch" type="search" placeholder="Rechercher (ex : RAID, NTFS, VLAN, Linux)" aria-label="Rechercher un TP">
+        <select id="tpFilter" aria-label="Filtrer par thème">
+          <option value="">Tous les thèmes</option>
+          <option value="SE">Systèmes d’exploitation</option>
+          <option value="Virtualisation">Virtualisation</option>
+          <option value="Stockage">Stockage & RAID</option>
+          <option value="Réseau">Réseau</option>
+          <option value="Sécurité">Sécurité</option>
+          <option value="Linux">Linux</option>
+        </select>
+        <span class="badge" id="tpCount" aria-live="polite">—</span>
+      </div>
+
+      <div id="tpEmpty" class="card" style="margin-top:18px; display:none">
+        <h3>Aucun résultat</h3>
+        <p class="muted" style="margin-top:6px">Essaie une autre recherche (ex : <strong>RAID</strong>, <strong>VLAN</strong>, <strong>Linux</strong>) ou remets le filtre sur “Tous”.</p>
+      </div>
+
+      <hr class="soft-hr" style="margin-top:22px">
+
+      <h3 class="project-heading"><span class="section-kicker">TP</span></h3>
+
+      <div class="tp-grid" id="tpGrid" style="margin-top:10px">
+        <div class="card tp-card" data-tags="SE Windows imprimante RAM résolution pilotes PDF" data-theme="SE">
+          <h4>TP — Systèmes d’exploitation (Chap. 1)</h4>
+          <p class="muted">Exercice & TP (matériel, pilotes, affichage).</p>
+          <div class="toolbar tabs" style="flex-wrap:wrap;gap:10px">
+            <a class="btn open-pdf" data-pdf="docs/Chassol Mathis Tp chap 1.pdf" href="docs/Chassol Mathis Tp chap 1.pdf">TP Chap.1 (PDF)</a>
+          </div>
+          <div class="toolbar"><span class="tag">SE</span><span class="tag">Windows</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="NTFS FAT32 partition formatage stockage PDF" data-theme="Stockage">
+          <h4>TP — Formatage & Partitionnement (Chap. 2)</h4>
+          <p class="muted">FAT32 vs NTFS, limite 4 Go, intérêt du partitionnement.</p>
+          <div class="toolbar tabs">
+            <a class="btn open-pdf" data-pdf="docs/Chassol Mathis TP formatage partitionnement chap2.pdf" href="docs/Chassol Mathis TP formatage partitionnement chap2.pdf">Chap.2 (PDF)</a>
+          </div>
+          <div class="toolbar"><span class="tag">NTFS</span><span class="tag">Partition</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="VirtualBox VMware Hyper-V Citrix Docker Kubernetes PDF" data-theme="Virtualisation">
+          <h4>TP — Virtualisation (Chap. 3)</h4>
+          <p class="muted">Comparatif hyperviseurs & conteneurs.</p>
+          <div class="toolbar tabs">
+            <a class="btn open-pdf" data-pdf="docs/Tp 1 chap 3 Chassol Mathis.pdf" href="docs/Tp 1 chap 3 Chassol Mathis.pdf">Chap.3 (PDF)</a>
+          </div>
+          <div class="toolbar"><span class="tag">Virtualisation</span><span class="tag">Docker</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="RAID1 sauvegarde Windows Server 2016 disques dynamiques PDF" data-theme="Stockage">
+          <h4>TP — RAID & Sauvegardes (Windows Server 2016)</h4>
+          <p class="muted">RAID1 logiciel, test de panne, sauvegardes.</p>
+          <div class="toolbar tabs" style="flex-wrap:wrap;gap:10px">
+            <a class="btn open-pdf" data-pdf="docs/TP Raid Chassol Mathis.pdf" href="docs/TP Raid Chassol Mathis.pdf">Travail rendu</a>
+          </div>
+          <div class="toolbar"><span class="tag">RAID 1</span><span class="tag">Sauvegarde</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="réseau ports protocoles OSI TCP UDP DNS HTTP SSH IIS 8080 PDF" data-theme="Réseau">
+          <h4>TP — Ports, Protocoles</h4>
+          <p class="muted">Ports/protocoles, modèle OSI, services principaux.</p>
+          <div class="toolbar tabs" style="flex-wrap:wrap;gap:10px">
+            <a class="btn open-pdf" data-pdf="docs/Chassol Mathis TP Port.pdf" href="docs/Chassol Mathis TP Port.pdf">TP Ports/OSI (PDF)</a>
+          </div>
+          <div class="toolbar"><span class="tag">Réseau</span><span class="tag">Ports/OSI</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="réseau routage statique table route netsh route add windows server PDF" data-theme="Réseau">
+          <h4>TP — Routage IP statique</h4>
+          <p class="muted">Lab routage (tables de routes, tests ping).</p>
+          <div class="toolbar tabs">
+            <a class="btn open-pdf" data-pdf="docs/Chassol Mathis Routage_statique_-_TP_réseau_routage_IP_2016_V2.pdf" href="docs/Chassol Mathis Routage_statique_-_TP_réseau_routage_IP_2016_V2.pdf">TP Routage statique (PDF)</a>
+          </div>
+          <div class="toolbar"><span class="tag">Routage</span><span class="tag">Windows</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="vlan 802.1q trunk access inter-vlan cisco packet tracer PDF" data-theme="Réseau">
+          <h4>Réseau — VLAN</h4>
+          <p class="muted">Création VLAN, trunk/tagging, isolation L2.</p>
+          <div class="toolbar tabs">
+            <a class="btn open-pdf" data-pdf="docs/TP VLAN Chassol Mathis.pdf" href="docs/TP VLAN Chassol Mathis.pdf">TP VLAN (PDF)</a>
+          </div>
+          <div class="toolbar"><span class="tag">VLAN</span><span class="tag">802.1Q</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="sécurité ddos attaque défense firewall cdn cloudflare mfa PDF" data-theme="Sécurité">
+          <h4>TP — Sécurité : Attaques & Défense</h4>
+          <p class="muted">Charges réseau, protections DoS/DDoS, bonnes pratiques.</p>
+          <div class="toolbar tabs">
+            <a class="btn open-pdf" data-pdf="docs/Chassol Mathis Tp Piratage prive - les moyens - attaque défense.pdf" href="docs/Chassol Mathis Tp Piratage prive - les moyens - attaque défense.pdf">Piratage & Défense (PDF)</a>
+          </div>
+          <div class="toolbar"><span class="tag">Sécurité</span><span class="tag">DDoS</span></div>
+        </div>
+
+        <div class="card tp-card" data-tags="linux shell commandes droits chmod umask PDF" data-theme="Linux">
+          <h4>Linux — Droits, Commandes & Shell</h4>
+          <p class="muted">chmod, commandes essentielles, création de shell.</p>
+          <div class="toolbar tabs" style="flex-wrap:wrap;gap:10px">
+            <a class="btn open-pdf" data-pdf="docs/Chassol Mathis exercices_DROITS_SOUS_LINUX.pdf" href="docs/Chassol Mathis exercices_DROITS_SOUS_LINUX.pdf">Droits Linux (PDF)</a>
+            <a class="btn open-pdf" data-pdf="docs/Ch_3_-_TP_2_-_commandes_Linux Chassol Mathis.pdf" href="docs/Ch_3_-_TP_2_-_commandes_Linux Chassol Mathis.pdf">TP 2 Commandes</a>
+            <a class="btn open-pdf" data-pdf="docs/TP_4-_Création_de_shell Chassol Mathis.pdf" href="docs/TP_4-_Création_de_shell Chassol Mathis.pdf">TP 4 Shell</a>
+          </div>
+          <div class="toolbar"><span class="tag">Linux</span><span class="tag">chmod</span><span class="tag">Shell</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Tous les TP — Liens directs</h3>
+        <p class="muted" style="margin:6px 0 12px">Clique pour ouvrir le PDF dans la visionneuse intégrée.</p>
+        <div class="toolbar tabs" style="gap:10px;flex-wrap:wrap">
+          <a class="btn open-pdf" data-pdf="docs/Chassol Mathis Tp chap 1.pdf" href="docs/Chassol Mathis Tp chap 1.pdf">SE — TP Chap.1</a>
+          <a class="btn open-pdf" data-pdf="docs/Chassol Mathis TP formatage partitionnement chap2.pdf" href="docs/Chassol Mathis TP formatage partitionnement chap2.pdf">Stockage — Chap.2</a>
+          <a class="btn open-pdf" data-pdf="docs/Tp 1 chap 3 Chassol Mathis.pdf" href="docs/Tp 1 chap 3 Chassol Mathis.pdf">Virtualisation — Chap.3</a>
+          <a class="btn open-pdf" data-pdf="docs/TP Raid Chassol Mathis.pdf" href="docs/TP Raid Chassol Mathis.pdf">RAID — Rendu</a>
+          <a class="btn open-pdf" data-pdf="docs/Chassol Mathis TP Port.pdf" href="docs/Chassol Mathis TP Port.pdf">Réseau — Ports/OSI</a>
+          <a class="btn open-pdf" data-pdf="docs/Chassol Mathis Routage_statique_-_TP_réseau_routage_IP_2016_V2.pdf" href="docs/Chassol Mathis Routage_statique_-_TP_réseau_routage_IP_2016_V2.pdf">Routage statique</a>
+          <a class="btn open-pdf" data-pdf="docs/TP VLAN Chassol Mathis.pdf" href="docs/TP VLAN Chassol Mathis.pdf">Réseau — VLAN</a>
+          <a class="btn open-pdf" data-pdf="docs/Chassol Mathis Tp Piratage prive - les moyens - attaque défense.pdf" href="docs/Chassol Mathis Tp Piratage prive - les moyens - attaque défense.pdf">Sécurité</a>
+          <a class="btn open-pdf" data-pdf="docs/Chassol Mathis exercices_DROITS_SOUS_LINUX.pdf" href="docs/Chassol Mathis exercices_DROITS_SOUS_LINUX.pdf">Linux — Droits</a>
+          <a class="btn open-pdf" data-pdf="docs/Ch_3_-_TP_2_-_commandes_Linux Chassol Mathis.pdf" href="docs/Ch_3_-_TP_2_-_commandes_Linux Chassol Mathis.pdf">Linux — TP2</a>
+          <a class="btn open-pdf" data-pdf="docs/TP_4-_Création_de_shell Chassol Mathis.pdf" href="docs/TP_4-_Création_de_shell Chassol Mathis.pdf">Linux — TP4</a>
+        </div>
+      </div>
+
+      <hr class="soft-hr">
+
+      <h3 class="project-heading"><span class="section-kicker">PROJET</span></h3>
+      <h3 id="mdl-section">Running Hightech</h3>
+
+      <div class="grid-3" style="margin-top:10px">
+        <div class="card">
+          <h4>Running Hightech (Windows Server 2016)</h4>
+          <p class="muted">Mise en place et administration <strong>AD</strong>, <strong>DNS/DHCP</strong>, <strong>GPO</strong> (infrastructure Windows Server 2016).</p>
+          <div class="toolbar tabs" style="flex-wrap:wrap;gap:10px">
+            <a class="btn open-pdf" data-pdf="docs/Chassol Mathis TP Running.pdf" href="docs/Chassol Mathis TP Running.pdf">Dossier projet (PDF)</a>
+          </div>
+          <div class="toolbar" style="gap:8px;flex-wrap:wrap">
+            <span class="tag">SE</span><span class="tag">Windows</span><span class="tag">AD/DNS/DHCP</span><span class="tag">GPO</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="soft-hr">
+
+      <h3 id="mdl-section">Maison des Ligues</h3>
+
+      <div class="grid-3" style="margin-top:10px">
+        <div class="card">
+          <h4>Maison des Ligues — Documents</h4>
+          <p class="muted">Infrastructure, VLAN, sauvegardes, documentation.</p>
+          <div class="toolbar tabs" style="flex-wrap:wrap;gap:10px">
+            <a class="btn open-pdf" data-pdf="docs/Mission 1.pdf" href="docs/Mission 1.pdf">Mission 1</a>
+            <a class="btn open-pdf" data-pdf="docs/Mission 2 Chassol Mathis Sidibé Modibo.pdf" href="docs/Mission 2 Chassol Mathis Sidibé Modibo.pdf">Mission 2</a>
+            <a class="btn open-pdf" data-pdf="docs/Mission 3  Chassol Mathis Sidibe Modibo.pdf" href="docs/Mission 3  Chassol Mathis Sidibe Modibo.pdf">Mission 3</a>
+            <a class="btn open-pdf" data-pdf="docs/Mission 4 Chassol Mathis Sidibé Modibo.pdf" href="docs/Mission 4 Chassol Mathis Sidibé Modibo.pdf">Mission 4</a>
+          </div>
+          <div class="toolbar">
+            <span class="tag">MDL</span><span class="tag">Réseau</span><span class="tag">VLAN</span><span class="tag">Sauvegarde</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h3>Maison des Ligues — Liens directs</h3>
+        <p class="muted" style="margin:6px 0 12px">Accès rapide aux documents MDL.</p>
+        <div class="toolbar tabs" style="gap:10px;flex-wrap:wrap">
+          <a class="btn open-pdf" data-pdf="docs/Mission 1.pdf" href="docs/Mission 1.pdf">Mission 1</a>
+          <a class="btn open-pdf" data-pdf="docs/Mission 2 Chassol Mathis Sidibé Modibo.pdf" href="docs/Mission 2 Chassol Mathis Sidibé Modibo.pdf">Mission 2</a>
+          <a class="btn open-pdf" data-pdf="docs/Mission 3  Chassol Mathis Sidibe Modibo.pdf" href="docs/Mission 3  Chassol Mathis Sidibe Modibo.pdf">Mission 3</a>
+          <a class="btn open-pdf" data-pdf="docs/Mission 4 Chassol Mathis Sidibé Modibo.pdf" href="docs/Mission 4 Chassol Mathis Sidibé Modibo.pdf">Mission 4</a>
+        </div>
+      </div>
+      <hr class="soft-hr">
+
+      <h3 id="certif-section" class="project-heading"><span class="section-kicker">CERTIFICATION</span></h3>
+      <h3>OpenClassrooms</h3>
+
+      <div class="grid-3" style="margin-top:10px">
+        <div class="card">
+          <h4>Mes Certifications OpenClassrooms</h4>
+          <p class="muted">Validation des compétences en Docker, sécurisation applicative et bonnes pratiques ANSSI.</p>
+          
+          <div class="toolbar tabs" style="flex-wrap:wrap;gap:10px">
+            <a class="btn" href="docs/Cetification openclassrooms CHASSOL Mathis.png" target="_blank">Visualiser</a>
+            
+            <a class="btn" href="docs/Cetification openclassrooms CHASSOL Mathis.png" download>Télécharger</a>
+          </div>
+
+          <div class="toolbar" style="gap:8px;flex-wrap:wrap;margin-top:10px">
+            <span class="tag">Docker</span><span class="tag">Sécurité</span><span class="tag">ANSSI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container reveal">
+      <h2>Contact</h2>
+      <div class="card">
+        <p class="muted">Envie d’échanger ou d’obtenir mon CV ? Écrivez-moi.</p>
+
+        <div class="grid-2" style="margin-top:10px">
+          <div>
+            <strong>Email</strong><br>
+            <span class="muted" id="emailText">chassol.mathis@gmail.com</span>
+            <div class="toolbar" style="margin-top:10px">
+              <button class="btn" id="copyEmailBtn" type="button" aria-label="Copier l'email">Copier l’email</button>
+              <a class="btn" href="mailto:chassol.mathis@gmail.com">M’écrire</a>
+            </div>
+          </div>
+          <div><strong>Localisation</strong><br><span class="muted">Noisy-le-Sec</span></div>
+        </div>
+
+        <div class="toolbar tabs" style="margin-top:10px">
+          <a class="btn open-pdf" data-pdf="docs/CV_CHASSOL Mathis Alternance.pdf" href="docs/CV_CHASSOL Mathis Alternance.pdf">Voir mon CV</a>
+          <a class="btn" href="#accueil">Retour en haut</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container" style="padding-top:0">
+      <div class="muted">© <span id="year"></span> CHASSOL Mathis — BTS SIO SISR</div>
+    </footer>
+  </main>
+
+  <!-- ======= Modale PDF ======= -->
+  <div id="pdfModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pdfTitle">
+    <div class="modal-box">
+      <div class="modal-bar">
+        <strong id="pdfTitle">Aperçu PDF</strong>
+        <div class="modal-actions">
+          <a id="pdfDownload" class="btn" href="#" download>Télécharger</a>
+          <button id="pdfClose" class="btn" type="button">Fermer</button>
+        </div>
+      </div>
+      <iframe id="pdfFrame" class="modal-frame" src="" title="Visionneuse PDF" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- Floating buttons -->
+  <div class="fab" aria-hidden="false">
+    <button class="btn" id="backTopBtn" type="button" title="Revenir en haut" aria-label="Revenir en haut" hidden>↑ Haut</button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // Année dynamique
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Toast helper
+  const toast = document.getElementById('toast');
+  let toastTimer = null;
+  function showToast(msg){
+    if(!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=> toast.classList.remove('show'), 2200);
+  }
+
+  // Thème clair/sombre + meta theme-color
+  const themeBtn = document.getElementById('themeBtn');
+  const themeMeta = document.getElementById('themeColorMeta');
+
+  // Bonus design: si aucun thème en storage, on respecte le système
+  const sysPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+  const setMode = (m)=>{
+    document.documentElement.classList.toggle('light', m==='light');
+    themeBtn.textContent = (m==='light'?'🌙':'☀️');
+    if(themeMeta){
+      themeMeta.setAttribute('content', m==='light' ? '#f8fbff' : '#070b1a');
+    }
+  };
+
+  let pref = localStorage.getItem('theme');
+  if(!pref){
+    pref = sysPrefersLight ? 'light' : 'dark';
+  }
+  setMode(pref);
+
+  themeBtn.addEventListener('click', ()=>{
+    pref = (pref==='dark' ? 'light' : 'dark');
+    localStorage.setItem('theme', pref);
+    setMode(pref);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  const navIcon = document.getElementById('navIcon');
+  if(navToggle && mainNav){
+    navToggle.addEventListener('click', ()=>{
+      const open = mainNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(navIcon) navIcon.textContent = open ? '－' : '＋';
+    });
+
+    // Fermer le menu mobile quand on clique un lien
+    mainNav.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        if(window.matchMedia('(max-width: 980px)').matches){
+          mainNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          if(navIcon) navIcon.textContent = '＋';
+        }
+      });
+    });
+  }
+
+  // Scroll progress + back-to-top
+  const progressBar = document.getElementById('progressBar');
+  const backTopBtn = document.getElementById('backTopBtn');
+
+  function updateProgress(){
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    if(progressBar) progressBar.style.width = pct.toFixed(2) + '%';
+
+    if(backTopBtn){
+      backTopBtn.hidden = scrollTop < 600;
+    }
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  backTopBtn?.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Scrollspy (avec aria-current)
+  const navLinks = [...document.querySelectorAll('.sidebar .nav a')];
+  const ids = navLinks.map(a=> a.getAttribute('href').replace('#','')).filter(Boolean);
+  const secs = ids.map(id=> document.getElementById(id)).filter(Boolean);
+
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(l => {
+          const isActive = (l.getAttribute('href') === '#'+id);
+          l.classList.toggle('active', isActive);
+          if(isActive) l.setAttribute('aria-current','page');
+          else l.removeAttribute('aria-current');
+        });
+      }
+    })
+  }, {rootMargin:"-40% 0px -55% 0px", threshold:0});
+
+  secs.forEach(s=> spy.observe(s));
+
+  // Reveal on scroll
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduced){
+    const revealObs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.12});
+
+    document.querySelectorAll('.reveal').forEach(el=> revealObs.observe(el));
+  }else{
+    document.querySelectorAll('.reveal').forEach(el=> el.classList.add('show'));
+  }
+
+  // Modale PDF + blocage scroll + focus simple + mini focus-trap
+  const pdfModal = document.getElementById('pdfModal');
+  const pdfFrame = document.getElementById('pdfFrame');
+  const pdfTitle = document.getElementById('pdfTitle');
+  const pdfDl = document.getElementById('pdfDownload');
+  const pdfClose = document.getElementById('pdfClose');
+  let lastFocus = null;
+
+  function safeURL(p){
+    try{ return encodeURI(p).replace(/\#/g,'%23'); }
+    catch(e){ return p; }
+  }
+
+  function getFocusableInModal(){
+    if(!pdfModal) return [];
+    return Array.from(pdfModal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+  }
+
+  function openPDF(path, label){
+    const url = safeURL(path);
+    lastFocus = document.activeElement;
+
+    pdfFrame.src = url;
+    pdfDl.href = url;
+    pdfTitle.textContent = label || 'Aperçu PDF';
+
+    pdfModal.classList.add('open');
+    pdfModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(()=> pdfClose?.focus(), 0);
+  }
+
+  function closePDF(){
+    pdfModal.classList.remove('open');
+    pdfModal.setAttribute('aria-hidden', 'true');
+    pdfFrame.src='about:blank';
+    document.body.style.overflow = '';
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  pdfClose?.addEventListener('click', closePDF);
+  pdfModal?.addEventListener('click', (e)=>{ if(e.target === pdfModal) closePDF(); });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape' && pdfModal.classList.contains('open')) closePDF();
+
+    // Trap Tab dans la modale
+    if(e.key === 'Tab' && pdfModal.classList.contains('open')){
+      const focusables = getFocusableInModal();
+      if(!focusables.length) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault(); last.focus();
+      }else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('a.open-pdf'); if(!a) return;
+    const path = a.getAttribute('data-pdf'); if(!path) return;
+    e.preventDefault();
+    openPDF(path, a.textContent.trim());
+  });
+
+  // ===== Correcteur automatique d'images + suppression des cartes cassées =====
+  function setupSmartImages(){
+    const imgs = document.querySelectorAll('img.smart-img');
+    imgs.forEach(img=>{
+      const srcs = (img.getAttribute('data-srcs') || '').split('|').map(s=>s.trim()).filter(Boolean);
+      if(!srcs.length) return;
+
+      img.dataset.tryIndex = "0";
+
+      img.addEventListener('error', ()=>{
+        let idx = parseInt(img.dataset.tryIndex || "0", 10);
+        idx++;
+        img.dataset.tryIndex = String(idx);
+
+        if(idx < srcs.length){
+          img.src = srcs[idx];
+        }else{
+          const item = img.closest('.media-item');
+          if(item) item.remove();
+          else img.remove();
+        }
+      });
+    });
+  }
+  setupSmartImages();
+
+  // Vidéos cassées => on supprime la carte
+  function hideBrokenVideos(){
+    document.querySelectorAll('.media-item video').forEach(v=>{
+      v.addEventListener('error', ()=>{
+        const item = v.closest('.media-item');
+        if(item) item.remove();
+        else v.remove();
+      });
+    });
+  }f
+  hideBrokenVideos();
+
+  // Filtre TP (avec compteur + empty state + debounce)
+  const search = document.getElementById('tpSearch');
+  const filter = document.getElementById('tpFilter');
+  const cards = Array.from(document.querySelectorAll('.tp-card'));
+  const tpCount = document.getElementById('tpCount');
+  const tpEmpty = document.getElementById('tpEmpty');
+
+  function applyFilter(){
+    const q = (search?.value||'').toLowerCase().trim();
+    const th = filter?.value || '';
+
+    let visible = 0;
+    cards.forEach(c=>{
+      const txt = (c.dataset.tags||'').toLowerCase();
+      const theme = c.dataset.theme || '';
+      const matchQ = !q || txt.includes(q);
+      const matchT = !th || theme === th;
+      const ok = (matchQ && matchT);
+      c.style.display = ok ? '' : 'none';
+      if(ok) visible++;
+    });
+
+    document.querySelectorAll('.quick-filter').forEach(b=>{
+      const t = b.getAttribute('data-theme') || '';
+      b.classList.toggle('active', t === th);
+    });
+
+    if(tpCount) tpCount.textContent = `${visible} / ${cards.length} TP affichés`;
+    if(tpEmpty) tpEmpty.style.display = (visible === 0) ? 'block' : 'none';
+  }
+
+  let debounceTimer = null;
+  function debouncedApply(){
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(applyFilter, 90);
+  }
+  search?.addEventListener('input', debouncedApply);
+  filter?.addEventListener('change', applyFilter);
+  document.querySelectorAll('.quick-filter').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const th = btn.getAttribute('data-theme') || '';
+      const select = document.getElementById('tpFilter');
+      if(select){ select.value = th; }
+      applyFilter();
+    });
+  });
+  applyFilter();
+
+  // Copier email
+  const copyEmailBtn = document.getElementById('copyEmailBtn');
+  const emailText = document.getElementById('emailText');
+  copyEmailBtn?.addEventListener('click', async ()=>{
+    const mail = (emailText?.textContent || '').trim();
+    try{
+      await navigator.clipboard.writeText(mail);
+      showToast("Email copié ✅");
+    }catch(e){
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = mail;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand('copy'); showToast("Email copié ✅"); }
+      catch(err){ showToast("Impossible de copier 😅"); }
+      document.body.removeChild(ta);
+    }
+  });
+  // Gestion du halo lumineux qui suit la souris
+const glow = document.getElementById('mouseGlow');
+document.addEventListener('mousemove', (e) => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
+
+// Correction d'une petite erreur de frappe dans ton code original (la lettre 'f' isolée)
+// Cherche la ligne avec "f hideBrokenVideos();" et retire le 'f'.
+</script>
+</body>
+</html>
