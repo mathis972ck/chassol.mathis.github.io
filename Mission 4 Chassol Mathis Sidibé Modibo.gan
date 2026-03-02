@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2025-04-01" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.2.3230" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="200" order="0"/>
+        <field id="tpd4" name="Date de début" width="75" order="1"/>
+        <field id="tpd5" name="Date de fin" width="75" order="2"/>
+        <option id="taskLabelUp" value="length"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="color.recent">
+            <![CDATA[#ffff00 #ff0033 #0000ff #cc0000 #3300ff #660066 #3333ff]]>
+        </option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Déploiement d’un portail de réservation intranet" color="#ffff00" meeting="false" start="2025-03-27" duration="3" complete="0" thirdDate="2025-03-07" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[en équipe]]>
+            </notes>
+        </task>
+        <task id="10" name="Audit et tests de performance des flux réseau" color="#ffff00" meeting="false" start="2025-04-25" duration="2" complete="0" thirdDate="2025-03-27" thirdDate-constraint="0" expand="true"/>
+        <task id="11" name="Gestion du projet" color="#ffff00" meeting="false" start="2025-03-27" duration="30" complete="0" thirdDate="2025-03-27" thirdDate-constraint="0" expand="true"/>
+        <task id="1" name="Conception et intégration d’une interface web responsive" color="#ff0033" meeting="false" start="2025-03-31" duration="4" complete="0" thirdDate="2025-03-07" thirdDate-constraint="0" expand="true"/>
+        <task id="2" name="Mise en place d’une architecture sécurisée pour la gestion des données" color="#ffff00" meeting="false" start="2025-04-09" duration="3" complete="0" thirdDate="2025-03-07" thirdDate-constraint="0" expand="true"/>
+        <task id="7" name="Déploiement d’une stratégie de formation et adoption utilisateur" color="#ff0033" meeting="false" start="2025-04-24" duration="2" complete="0" thirdDate="2025-03-24" thirdDate-constraint="0" expand="true"/>
+        <task id="3" name="Optimisation des performances applicatives et réseau" color="#0000ff" meeting="false" start="2025-04-03" duration="5" complete="0" thirdDate="2025-03-07" thirdDate-constraint="0" expand="true"/>
+        <task id="13" name="Conformité aux réglementations en matière de protection des données" color="#ff0033" meeting="false" start="2025-04-28" duration="5" complete="0" thirdDate="2025-03-28" thirdDate-constraint="0" expand="true"/>
+        <task id="15" name="Renforcement de la cybersécurité et des accès réseau" color="#ffff00" meeting="false" start="2025-04-28" duration="2" complete="0" thirdDate="2025-03-27" thirdDate-constraint="0" expand="true"/>
+        <task id="14" name="hébergement de l'application" color="#ffff00" meeting="false" start="2025-05-01" duration="1" complete="0" thirdDate="2025-04-07" thirdDate-constraint="0" expand="true"/>
+        <task id="4" name="Intégration et interopérabilité avec l’infrastructure IT existante" color="#ff0033" meeting="false" start="2025-04-16" duration="4" complete="0" thirdDate="2025-03-07" thirdDate-constraint="0" expand="true"/>
+        <task id="8" name="Garantir la haute disponibilité et la redondance du service" color="#3300ff" meeting="false" start="2025-04-09" duration="6" complete="0" thirdDate="2025-03-31" thirdDate-constraint="0" expand="true"/>
+        <task id="9" name="Validation de la compatibilité avec l’environnement réseau et matériel" color="#3300ff" meeting="false" start="2025-04-21" duration="4" complete="0" thirdDate="2025-03-31" thirdDate-constraint="0" expand="true"/>
+        <task id="12" name="Implémentation d’une politique de gestion des ressources IT" color="#0000ff" meeting="false" start="2025-03-27" duration="3" complete="0" thirdDate="2025-03-27" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
